@@ -10,3 +10,7 @@ function dd(...$vars) {
 }
 
 require_once ROOT_DIR . '/vendor/autoload.php';
+
+use Core\App;
+
+App::bind('database', require_once 'config/database.php');
