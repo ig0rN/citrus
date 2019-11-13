@@ -1,14 +1,10 @@
 <?php
 
-function dd(...$vars) {
-    echo '<pre>';
-    foreach ($vars as $var) {
-        var_dump($var);
-    }
-    echo '</pre>';
-    die;
-}
+define("ROOT_DIR", __DIR__);
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once 'bootstrap/bootstrap.php';
 
-new App\Core\First;
+use Core\{Router, Request};
+
+Router::load('routes/web.php')
+    ->direct(Request::uri(), Request::method());
