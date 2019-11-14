@@ -30,4 +30,15 @@ class Comment
         ")->resultSet();
     }
 
+    public function addComment(array $var): bool
+    {
+        return $this->db->query(
+            "INSERT INTO comments (user_name, user_email, content) VALUES (:user_name,:user_email,:content)"
+        )
+        ->bind(':user_name', $var['name'])
+        ->bind(':user_email', $var['email'])
+        ->bind(':content', $var['comment'])
+        ->execute();
+    }
+
 }
