@@ -1,5 +1,4 @@
 {
-    "name": "ig0rN/citrus",
     "type": "project",
     "authors": [
         {
@@ -12,6 +11,6 @@
             "App\\": "app/",
             "Core\\": "core/"
         },
-        "files": []
+        "files": ["config/helpers.php"]
     }
 }

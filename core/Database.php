@@ -53,6 +53,8 @@ class Database {
         }
 
         $this->stmt->bindValue($param, $value, $type);
+
+        return $this;
     }
 
     // Execute the prepared statment

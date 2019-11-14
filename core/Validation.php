@@ -7,7 +7,7 @@ class Validation {
     private $passed = false;
     private $errors = array();
 
-    public function check($variable, $fields = array()) {
+    public function check($variable, array $fields = array()) {
 
         foreach ($fields as $field => $rules) {
 

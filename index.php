@@ -1,6 +1,6 @@
 <?php
 
-define("ROOT_DIR", __DIR__);
+define("ROOT_DIR", str_replace('\\', '/', __DIR__));
 
 require_once 'bootstrap/bootstrap.php';
 
