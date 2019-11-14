@@ -1,4 +1,4 @@
-<?php view("front/layouts/header") ?>
+<?php view("layouts/header") ?>
 
     <div class="container">
         <div class="row">
@@ -37,7 +37,7 @@
                     </div>
                 </form>
 
-                <?php view('front/layouts/errors') ?>
+                <?php view('layouts/errors') ?>
 
             </div>
         </div>
@@ -70,4 +70,4 @@
         </div>
     </div>
 
-<?php view("front/layouts/footer") ?>
+<?php view("layouts/footer") ?>

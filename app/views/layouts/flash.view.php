@@ -1,9 +1,9 @@
 <?php
     $session = \Core\App::get('session');
-    if ($session->has('errors') || $session->has('success')) :
+    if ($session->has('error') || $session->has('success')) :
 ?>
     <?php if($session->has('error')) : ?>
-        <div class="bg-success text-center">
+        <div class="bg-danger text-center">
             <p><?= $session->get('error') ?></p>
         </div>
         <?php $session->delete('error') ?>

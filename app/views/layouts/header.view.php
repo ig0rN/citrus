@@ -13,5 +13,5 @@
 <body>
 
     <div class="container mb-4">
-        <?php view('front/layouts/flash') ?>
+        <?php view('layouts/flash') ?>
     </div>
