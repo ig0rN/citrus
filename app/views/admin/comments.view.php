@@ -1,7 +1,12 @@
 <?php view("layouts/header") ?>
 
-    <div class="container-fluid text-right">
-        <a href="/admin/logout" class="btn btn-secondary">Logout</a>
+    <div class="container-fluid clearfix">
+        <div class="float-left">
+            <a href="/admin/home" class="btn btn-secondary">Home page</a>
+        </div>
+        <div class="float-right">
+            <a href="/admin/logout" class="btn btn-secondary">Logout</a>
+        </div>
     </div>
 
     <div class="container">
@@ -25,6 +30,7 @@
                         <td scope="col">#</td>
                         <td scope="col">Comment</td>
                         <td scope="col">Author</td>
+                        <td scope="col">Email</td>
                         <td scope="col">Option</td>
                     </tr>
                     </thead>
@@ -35,6 +41,7 @@
                             <td scope="row"><?= $counter_p ?></td>
                             <td><?= $comment->content ?></td>
                             <td><?= $comment->name ?></td>
+                            <td><?= $comment->email ?></td>
                             <td>
                                 <form action="/admin/comment/approve" method="post" class="d-inline">
                                     <input name="id" type="hidden" value="<?= $comment->id ?>">
@@ -67,6 +74,7 @@
                         <td scope="col">#</td>
                         <td scope="col">Comment</td>
                         <td scope="col">Author</td>
+                        <td scope="col">Email</td>
                         <td scope="col">Option</td>
                     </tr>
                     </thead>
@@ -77,6 +85,7 @@
                             <td scope="row"><?= $counter_a ?></td>
                             <td><?= $comment->content ?></td>
                             <td><?= $comment->name ?></td>
+                            <td><?= $comment->email ?></td>
                             <td>
                                 <form action="/admin/comment/delete" method="post" class="d-inline">
                                     <input name="id" type="hidden" value="<?= $comment->id ?>">
