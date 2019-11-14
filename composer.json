@@ -12,5 +12,8 @@
             "Core\\": "core/"
         },
         "files": ["config/helpers.php"]
+    },
+    "require": {
+        "intervention/image": "^2.5"
     }
 }

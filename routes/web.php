@@ -14,3 +14,10 @@ $router->get('admin/home', 'Admin\HomeController@index');
 $router->get('admin/comments', 'Admin\CommentsController@showComments');
 $router->post('admin/comment/approve', 'Admin\CommentsController@approve');
 $router->post('admin/comment/delete', 'Admin\CommentsController@delete');
+
+$router->get('admin/products', 'Admin\ProductsController@index');
+$router->get('admin/product/create', 'Admin\ProductsController@create');
+$router->post('admin/product/create', 'Admin\ProductsController@store');
+$router->get('admin/product/edit', 'Admin\ProductsController@edit');
+$router->post('admin/product/edit', 'Admin\ProductsController@update');
+$router->post('admin/product/delete', 'Admin\ProductsController@destroy');
