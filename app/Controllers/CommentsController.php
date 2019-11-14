@@ -17,6 +17,7 @@ class CommentsController
         $validation = ( new CommentRequest() )->validate($_POST);
 
         if (!$validation->passed()) {
+            App::get('session')->set('error', 'Validation failed. Try again.git a');
             App::get('session')->set('errors', $validation->errors());
 
             return redirect('/');
