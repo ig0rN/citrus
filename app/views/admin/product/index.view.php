@@ -38,11 +38,11 @@
                             <td>
                                 <form action="/admin/product/edit" method="get" class="d-inline">
                                     <input name="id" type="hidden" value="<?= $product->id ?>">
-                                    <button type="submit"><i class="fa fa-check"></i></button>
+                                    <button type="submit"><i class="fa fa-edit text-success"></i></button>
                                 </form>
                                 <form action="/admin/product/delete" method="post" class="d-inline">
                                     <input name="id" type="hidden" value="<?= $product->id ?>">
-                                    <button type="submit"><i class="fa fa-times"></i></button>
+                                    <button type="submit"><i class="fa fa-times text-danger"></i></button>
                                 </form>
                             </td>
                         </tr>

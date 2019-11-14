@@ -45,11 +45,11 @@
                             <td>
                                 <form action="/admin/comment/approve" method="post" class="d-inline">
                                     <input name="id" type="hidden" value="<?= $comment->id ?>">
-                                    <button type="submit"><i class="fa fa-check"></i></button>
+                                    <button type="submit"><i class="fa fa-check text-success"></i></button>
                                 </form>
                                 <form action="/admin/comment/delete" method="post" class="d-inline">
                                     <input name="id" type="hidden" value="<?= $comment->id ?>">
-                                    <button type="submit"><i class="fa fa-times"></i></button>
+                                    <button type="submit"><i class="fa fa-times text-danger"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -89,7 +89,7 @@
                             <td>
                                 <form action="/admin/comment/delete" method="post" class="d-inline">
                                     <input name="id" type="hidden" value="<?= $comment->id ?>">
-                                    <button type="submit"><i class="fa fa-times"></i></button>
+                                    <button type="submit"><i class="fa fa-times text-danger"></i></button>
                                 </form>
                             </td>
                         </tr>
