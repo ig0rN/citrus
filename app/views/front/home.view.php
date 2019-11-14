@@ -11,8 +11,14 @@
             <?php endforeach; ?>
         </div>
 
+        <div class="row justify-content-center mt-4">
+            <div class="text-center">
+                <h3>Place your comment:</h3>
+            </div>
+        </div>
+
         <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-4">
                 <form action="comment/" method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -24,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Comment</label>
-                        <textarea name="comment" id="" cols="30" rows="5" class="form-control"></textarea>
+                        <textarea name="comment" id="" cols="30" rows="2" class="form-control"></textarea>
                     </div>
                     <div class="text-right">
                         <button class="btn btn-primary">Send comment</button>
@@ -44,7 +50,7 @@
 
         <div class="row justify-content-center mt-4">
             <?php foreach ($comments as $comment) : ?>
-                <div class="col-8 card mt-3">
+                <div class="col-4 card mt-2">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -56,7 +62,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Comment</label>
-                            <textarea cols="30" rows="5" class="form-control" disabled><?= $comment->conten ?></textarea>
+                            <textarea cols="30" rows="2" class="form-control" disabled><?= $comment->content ?></textarea>
                         </div>
                     </div>
                 </div>
