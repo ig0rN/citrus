@@ -1,31 +1,17 @@
 <?php
 
-
 namespace App\Controllers;
 
-
-use Core\Database;
+use App\Models\Comment;
+use App\Models\Product;
 
 class PageController
 {
-    protected $db;
-
-    public function __construct()
-    {
-        $this->db = new Database();
-    }
-
     public function home()
     {
-        $products = $this->db->query("
-            SELECT * FROM products
-        ")->resultSet();
+        $products = ( new Product )->selectAll();
+        $comments = ( new Comment )->selectByApprovalStatus(true);
 
-
-        require_once 'app/views/front/home.view.php';
-    }
-
-    public function test()
-    {
+        return view('front/home', compact('products', 'comments'));
     }
 }

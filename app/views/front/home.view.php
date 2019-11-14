@@ -31,9 +31,36 @@
                     </div>
                 </form>
 
-                <?php view('front/layouts/flash') ?>
+                <?php view('front/layouts/errors') ?>
 
             </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="text-center">
+                <h3>Comments:</h3>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <?php foreach ($comments as $comment) : ?>
+                <div class="col-8 card mt-3">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" value="<?= $comment->name ?>" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" value="<?= $comment->email ?>" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Comment</label>
+                            <textarea cols="30" rows="5" class="form-control" disabled><?= $comment->conten ?></textarea>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
