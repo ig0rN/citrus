@@ -46,7 +46,7 @@
                         Current image
                     </div>
                     <div class="card-body text-center">
-                        <img src="<?= asset('images/' . $product->image_path) ?>" alt="">
+                        <img src="<?= asset('images/' . $product->image_path) ?>" alt="" width="250px">
                     </div>
                 </div>
             </div>
