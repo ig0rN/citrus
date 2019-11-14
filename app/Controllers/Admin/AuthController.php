@@ -1,21 +1,17 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use App\Models\User;
 use App\RequestValidation\LoginRequest;
 use Core\App;
 
-class AuthController
+class AuthController extends BaseController
 {
 
     public function __construct()
     {
-        $loggedIn = App::get('session')->has('admin_user');
-
-        if ($loggedIn) {
-            return redirect('/admin/home');
-        }
+        $this->handleAuthorizedUser();
     }
 
     public function showLogin()

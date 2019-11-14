@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Controllers;
-
 
 use App\Models\Comment;
 use App\RequestValidation\CommentRequest;
@@ -29,23 +27,5 @@ class CommentsController
         }
 
         return redirect('/');
-    }
-
-    public function approve()
-    {
-        ( new Comment() )->approve($_POST);
-
-        App::get('session')->set('success', 'You successfully approved comment');
-
-        return redirect('/admin/comments');
-    }
-
-    public function delete()
-    {
-        ( new Comment() )->delete($_POST);
-
-        App::get('session')->set('success', 'You successfully deleted comment');
-
-        return redirect('/admin/comments');
     }
 }
