@@ -12,11 +12,10 @@ class CommentsController
 {
     public function store()
     {
-        $session = App::get('session');
         $validation = ( new CommentRequest() )->validate($_POST);
 
         if (!$validation->passed()) {
-            $session->set('errors', $validation->errors());
+            App::get('session')->set('errors', $validation->errors());
 
             return redirect('/');
         }
@@ -24,11 +23,29 @@ class CommentsController
         $result = ( new Comment() )->addComment($_POST);
 
         if ($result) {
-            $session->set('success', 'You successfuly send comment. Now you wait for admin to approve');
+            App::get('session')->set('success', 'You successfully send comment. Now you wait for admin to approve');
         } else {
-            $session->set('error', 'Somethings went wrong');
+            App::get('session')->set('error', 'Somethings went wrong');
         }
 
         return redirect('/');
+    }
+
+    public function approve()
+    {
+        ( new Comment() )->approve($_POST);
+
+        App::get('session')->set('success', 'You successfully approved comment');
+
+        return redirect('/admin/comments');
+    }
+
+    public function delete()
+    {
+        ( new Comment() )->delete($_POST);
+
+        App::get('session')->set('success', 'You successfully deleted comment');
+
+        return redirect('/admin/comments');
     }
 }

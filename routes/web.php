@@ -10,3 +10,7 @@ $router->get('admin/logout', 'AuthController@logout');
 
 $router->get('admin', 'AdminController@redirect');
 $router->get('admin/home', 'AdminController@index');
+
+$router->get('admin/comments', 'AdminController@showComments');
+$router->post('admin/comment/approve', 'CommentsController@approve');
+$router->post('admin/comment/delete', 'CommentsController@delete');
