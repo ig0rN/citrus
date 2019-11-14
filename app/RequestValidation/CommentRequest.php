@@ -31,7 +31,7 @@ class CommentRequest implements ValidationRequestInterface {
                 'required' => true,
                 'min' => 7,
             ),
-            'description|Description' => array(
+            'comment|Description' => array(
                 'required' => true,
                 'min' => 6,
                 'max' => 80
