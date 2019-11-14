@@ -18,3 +18,9 @@ function view(string $path, array $data = []) {
 
     return require_once ROOT_DIR . "/app/views/{$path}.view.php";
 }
+
+function asset(string $path) {
+    $path = ROOT_DIR . '/public/' . $path;
+
+    return str_replace('/', '\\', $path);
+}

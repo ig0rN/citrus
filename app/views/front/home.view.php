@@ -4,7 +4,7 @@
         <div class="row">
             <?php foreach ($products as $product) : ?>
                 <div class="col-4">
-                    <img src="<?= $product->image_path ?>" alt="<?= $product->image_path ?>">
+                    <img src="<?= asset('images/' . $product->image_path) ?>" alt="<?= $product->image_path ?>">
                     <h3><?= $product->name ?></h3>
                     <p><?= $product->description ?></p>
                 </div>
