@@ -13,14 +13,8 @@
 
     <div class="row justify-content-center mt-4">
         <div class="text-center">
-            <ul>
-                <li>
-                    <a href="/admin/products">Products</a>
-                </li>
-                <li>
-                    <a href="/admin/comments">Comments</a>
-                </li>
-            </ul>
+            <a href="/admin/products" class="btn btn-light">Products</a>
+            <a href="/admin/comments" class="btn btn-light">Comments</a>
         </div>
     </div>
 </div>

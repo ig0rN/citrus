@@ -18,7 +18,7 @@
 
         <div class="row justify-content-center mt-4">
             <div class="text-center">
-                <h3>Pending:</h3>
+                <h4>Pending:</h4>
             </div>
         </div>
 
@@ -62,11 +62,11 @@
 
         <div class="row justify-content-center mt-4">
             <div class="text-center">
-                <h3>Approved:</h3>
+                <h4>Approved:</h4>
             </div>
         </div>
 
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-4">git s
             <div class="text-center">
                 <table class="table table-dark">
                     <thead>

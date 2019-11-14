@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <?php foreach ($products as $product) : ?>
-                <div class="col-4">
+                <div class="col-4 mb-3">
                     <div class="card">
                         <div class="card-header text-center">
                             <img src="<?= asset('images/' . $product->image_path) ?>" alt="<?= $product->image_path ?>" width="250px">
