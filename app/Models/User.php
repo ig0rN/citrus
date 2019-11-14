@@ -16,13 +16,13 @@ class User
         $this->db = new Database();
     }
 
-    public function getByUsername(array $var)
+    public function getByUsername(array $post)
     {
         return $this->db->query("
             SELECT * FROM admin_users
             WHERE username = :username
         ")
-            ->bind('username', $var['username'])
+            ->bind('username', $post['username'])
             ->single();
     }
 }
