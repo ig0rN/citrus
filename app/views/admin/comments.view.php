@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <div class="row justify-content-center mt-4">git s
+        <div class="row justify-content-center mt-4">
             <div class="text-center">
                 <table class="table table-dark">
                     <thead>

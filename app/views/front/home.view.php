@@ -25,7 +25,7 @@
 
         <div class="row justify-content-center mt-4">
             <?php foreach ($comments as $comment) : ?>
-                <div class="col-4 card mt-2">
+                <div class="col-3 card mr-2">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
