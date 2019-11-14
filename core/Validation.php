@@ -2,11 +2,24 @@
 
 namespace Core;
 
-class Validation {
-
+class Validation
+{
+    /**
+     * @var bool
+     */
     private $passed = false;
+    /**
+     * @var array
+     */
     private $errors = array();
 
+    /**
+     * Except mostly form data which need to be validated
+     *
+     * @param $variable
+     * @param array $fields
+     * @return $this
+     */
     public function check($variable, array $fields = array()) {
 
         foreach ($fields as $field => $rules) {
@@ -45,14 +58,30 @@ class Validation {
         return $this;
     }
 
+    /**
+     * Add error to error array
+     *
+     * @param $field
+     * @param $error
+     */
     private function addError($field, $error) {
       $this->errors[$field] = $error;
     }
 
+    /**
+     * Retrieves errors
+     *
+     * @return array
+     */
     public function errors() {
       return $this->errors;
     }
 
+    /**
+     * Check does validation passed or not
+     *
+     * @return bool
+     */
     public function passed() {
       return $this->passed;
     }

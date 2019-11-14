@@ -1,14 +1,31 @@
 <?php
 
 namespace Core;
+
 use PDO;
 use PDOException;
 
-class Database {
+class Database
+{
+    /**
+     * @var PDO
+     */
     private $db_handler;
+    /**
+     * @var PDO statement
+     */
     private $stmt;
+    /**
+     * @var string
+     */
     private $error;
 
+    /**
+     * Connect to database
+     * Save instance to property $db_handler
+     *
+     * Database constructor.
+     */
     public function __construct(){
         $dbParams =  App::get('database');
 
@@ -27,14 +44,26 @@ class Database {
         }
     }
 
-    // Prepared statments with query
+    /**
+     * Make prepared statement
+     *
+     * @param $sql
+     * @return $this
+     */
     public function query($sql){
         $this->stmt = $this->db_handler->prepare($sql);
 
         return $this;
     }
 
-    // Bind values
+    /**
+     * Bind params to prepared statement if needed
+     *
+     * @param $param
+     * @param $value
+     * @param null $type
+     * @return $this
+     */
     public function bind($param, $value, $type = null){
         if(is_null($type)){
             switch(true){
@@ -57,24 +86,40 @@ class Database {
         return $this;
     }
 
-    // Execute the prepared statment
+    /**
+     * Execute prepared statement
+     *
+     * @return mixed
+     */
     public function execute(){
         return $this->stmt->execute();
     }
 
-    // Get result set as array of object
+    /**
+     * Return array of objects
+     *
+     * @return null | array of objects
+     */
     public function resultSet(){
         $this->execute();
         return $this->stmt->fetchAll();
     }
 
-    // Get single record as object
+    /**
+     * Return object
+     *
+     * @return mixed
+     */
     public function single(){
         $this->execute();
         return $this->stmt->fetch();
     }
 
-    // Get row count
+    /**
+     * Return row numbers;
+     *
+     * @return mixed
+     */
     public function rowCount(){
         return $this->stmt->rowCount();
     }

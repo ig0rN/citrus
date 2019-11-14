@@ -7,6 +7,9 @@ use App\Models\Product;
 
 class PageController
 {
+    /**
+     * Show homepage
+     */
     public function home()
     {
         $products = ( new Product )->selectAll();

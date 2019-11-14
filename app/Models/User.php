@@ -11,6 +11,10 @@ class User
      */
     private $db;
 
+    /**
+     * Comment constructor.
+     * Set database instance
+     */
     public function __construct()
     {
         $this->db = new Database();
@@ -22,7 +26,7 @@ class User
             SELECT * FROM admin_users
             WHERE username = :username
         ")
-            ->bind('username', $post['username'])
+            ->bind(':username', $post['username'])
             ->single();
     }
 }

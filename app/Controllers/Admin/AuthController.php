@@ -8,17 +8,29 @@ use Core\App;
 
 class AuthController extends BaseController
 {
-
+    /**
+     * AuthController constructor.
+     */
     public function __construct()
     {
         $this->handleAuthorizedUser();
     }
 
+    /**
+     * Displays admin login form
+     *
+     * @return mixed
+     */
     public function showLogin()
     {
         return view('/admin/auth/login');
     }
 
+    /**
+     * Collect data
+     * Validate data
+     * Call method for login logic
+     */
     public function login()
     {
         $validation = ( new LoginRequest() )->validate($_POST);
@@ -34,6 +46,14 @@ class AuthController extends BaseController
         $this->attempLogin($user, $_POST);
     }
 
+    /**
+     * Check user's credentials
+     * Display errors if exists or login user
+     * Make redirection
+     *
+     * @param $user
+     * @param $var
+     */
     private function attempLogin($user, $var)
     {
         if (! $user) {
@@ -51,6 +71,11 @@ class AuthController extends BaseController
         return redirect('/admin/login');
     }
 
+    /**
+     * Logout user
+     * Delete admin_user from session
+     * Redirect user
+     */
     public function logout()
     {
         App::get('session')->delete('admin_user');

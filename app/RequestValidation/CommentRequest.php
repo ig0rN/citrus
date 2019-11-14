@@ -12,6 +12,7 @@ class CommentRequest implements ValidationRequestInterface {
 
     /**
      * CommentRequest constructor.
+     * Set validation instance
      */
     public function __construct()
     {

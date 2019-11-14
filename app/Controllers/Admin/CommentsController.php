@@ -7,11 +7,18 @@ use Core\App;
 
 class CommentsController extends BaseController
 {
+    /**
+     * CommentsController constructor.
+     */
     public function __construct()
     {
         $this->handleUnauthorizedUser();
     }
 
+    /**
+     * Collect approved and pending comments
+     * Show view
+     */
     public function showComments()
     {
         $approved = ( new Comment )->selectByApprovalStatus(true);
@@ -20,6 +27,9 @@ class CommentsController extends BaseController
         return view('admin/comments', compact('approved', 'pending'));
     }
 
+    /**
+     * Approve comment
+     */
     public function approve()
     {
         ( new Comment() )->approve($_POST);
@@ -29,6 +39,9 @@ class CommentsController extends BaseController
         return redirect('/admin/comments');
     }
 
+    /**
+     * Deny comment and delete it from database
+     */
     public function delete()
     {
         ( new Comment() )->delete($_POST);

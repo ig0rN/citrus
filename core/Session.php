@@ -2,7 +2,8 @@
 
 namespace Core;
 
-class Session {
+class Session
+{
     /**
      * Session constructor.
      */

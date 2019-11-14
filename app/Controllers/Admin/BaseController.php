@@ -6,7 +6,9 @@ use Core\App;
 
 abstract class BaseController
 {
-
+    /**
+     * Handle user who isn't logged
+     */
     protected function handleUnauthorizedUser()
     {
         if (! App::get('session')->has('admin_user')) {
@@ -16,6 +18,9 @@ abstract class BaseController
         }
     }
 
+    /**
+     * Handle user who is logged
+     */
     protected function handleAuthorizedUser()
     {
         if (App::get('session')->has('admin_user')) {

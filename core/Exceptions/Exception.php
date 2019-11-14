@@ -1,19 +1,22 @@
 <?php
 
-
 namespace Core\Exceptions;
-
-
-use Throwable;
 
 abstract class Exception extends \Exception
 {
-
+    /**
+     * Exception constructor.
+     * @param $message
+     * @param $code
+     */
     public function __construct($message, $code)
     {
         parent::__construct($message, $code);
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return "Error {$this->getCode()}: {$this->getMessage()}";
@@ -42,5 +45,4 @@ abstract class Exception extends \Exception
             echo $this->__toString();
         }
     }
-
 }

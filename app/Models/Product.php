@@ -11,6 +11,10 @@ class Product
      */
     private $db;
 
+    /**
+     * Comment constructor.
+     * Set database instance
+     */
     public function __construct()
     {
         $this->db = new Database();

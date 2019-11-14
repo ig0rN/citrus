@@ -1,9 +1,14 @@
 <?php
+/**
+ * Return database params
+ *
+ * @return array
+ */
 
 return [
     'type' => 'mysql',
     'host' => 'localhost',
     'dbname' => 'citrus',
-    'username' => 'root',
+    'username' => 'igornikolic',
     'password' => ''
 ];

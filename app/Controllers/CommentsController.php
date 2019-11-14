@@ -8,6 +8,10 @@ use Core\App;
 
 class CommentsController
 {
+    /**
+     * Validate comment
+     * Store comment in database
+     */
     public function store()
     {
         $validation = ( new CommentRequest() )->validate($_POST);
