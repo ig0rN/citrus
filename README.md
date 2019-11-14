@@ -8,7 +8,9 @@
 
 - Make virtual host for project
 
-- Import database from "citrus.sql" file from root directory
+- Create database "citrus.sql"
+
+- Import database structure and data from "citrus.sql" file from root directory
 
 - Set database params inside "config/database.php"
     
