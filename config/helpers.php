@@ -20,7 +20,10 @@ function view(string $path, array $data = []) {
 }
 
 function asset(string $path) {
-    $path = ROOT_DIR . '/public/' . $path;
+    $protocol = empty($_SERVER['HTTPS']) ? 'http' : 'https';
+    $rootUrl = $_SERVER['SERVER_NAME'];
 
-    return str_replace('/', '\\', $path);
+    $url = "{$protocol}://{$rootUrl}/public/";
+
+    return  $url . $path;
 }

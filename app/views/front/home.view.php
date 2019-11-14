@@ -4,9 +4,15 @@
         <div class="row">
             <?php foreach ($products as $product) : ?>
                 <div class="col-4">
-                    <img src="<?= asset('images/' . $product->image_path) ?>" alt="<?= $product->image_path ?>">
-                    <h3><?= $product->name ?></h3>
-                    <p><?= $product->description ?></p>
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <img src="<?= asset('images/' . $product->image_path) ?>" alt="<?= $product->image_path ?>" width="250px">
+                        </div>
+                        <div class="card-body text-center">
+                            <h3><?= $product->name ?></h3>
+                            <p><?= $product->description ?></p>
+                        </div>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
