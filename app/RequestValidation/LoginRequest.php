@@ -4,25 +4,11 @@ namespace App\RequestValidation;
 
 use Core\Validation;
 
-class LoginRequest implements ValidationRequestInterface {
-    /**
-     * @var ValidationRequestInterface
-     */
-    private $validator;
-
-    /**
-     * CommentRequest constructor.
-     * Set validation instance
-     */
-    public function __construct()
-    {
-        $this->validator = New Validation();
-    }
-
-
+class LoginRequest extends Validation implements ValidationRequestInterface
+{
     public function validate($var)
     {
-        $validation = $this->validator->check($var, array(
+        $validation = $this->check($var, array(
             'username|Username' => array(
                 'required' => true,
                 'min' => 3,

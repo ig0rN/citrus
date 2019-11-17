@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Validation
+abstract class Validation
 {
     /**
      * @var bool
@@ -20,7 +20,7 @@ class Validation
      * @param array $fields
      * @return $this
      */
-    public function check($variable, array $fields = array()) {
+    protected function check($variable, array $fields = array()) {
 
         foreach ($fields as $field => $rules) {
 
