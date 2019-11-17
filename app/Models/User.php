@@ -2,24 +2,10 @@
 
 namespace App\Models;
 
-use Core\Database;
+use Core\Model;
 
-class User
+class User extends Model
 {
-    /**
-     * @var Database
-     */
-    private $db;
-
-    /**
-     * Comment constructor.
-     * Set database instance
-     */
-    public function __construct()
-    {
-        $this->db = new Database();
-    }
-
     public function getByUsername(array $post)
     {
         return $this->db->query("

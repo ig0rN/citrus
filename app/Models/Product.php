@@ -2,24 +2,10 @@
 
 namespace App\Models;
 
-use Core\Database;
+use Core\Model;
 
-class Product
+class Product extends Model
 {
-    /**
-     * @var Database
-     */
-    private $db;
-
-    /**
-     * Comment constructor.
-     * Set database instance
-     */
-    public function __construct()
-    {
-        $this->db = new Database();
-    }
-
     public function selectAll()
     {
         return $this->db->query("

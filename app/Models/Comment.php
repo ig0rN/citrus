@@ -2,24 +2,10 @@
 
 namespace App\Models;
 
-use Core\Database;
+use Core\Model;
 
-class Comment
+class Comment extends Model
 {
-    /**
-     * @var Database
-     */
-    private $db;
-
-    /**
-     * Comment constructor.
-     * Set database instance
-     */
-    public function __construct()
-    {
-        $this->db = new Database();
-    }
-
     public function selectByApprovalStatus(bool $status)
     {
         $value = $status ? 1 : 0;
