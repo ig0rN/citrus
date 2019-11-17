@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row justify-content-center mt-4">
             <div class="text-center">
-                <h3>Product Create</h3>
+                <h3>Product Edit</h3>
             </div>
         </div>
 
@@ -30,7 +30,7 @@
                         <textarea name="description" id="" cols="30" rows="2" class="form-control"><?= $product->description ?></textarea>
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-primary">Create</button>
+                        <button class="btn btn-primary">Edit</button>
                     </div>
                 </form>
 

@@ -63,6 +63,11 @@ class ProductsController extends BaseController
             return redirect('/admin/product/edit?id=' . $_POST['id']);
         }
 
+        ( new Product() )->update($_POST);
+
+        App::get('session')->set('success', 'You successfully updated product');
+
+        return redirect('/admin/products');
     }
 
     public function destroy()
