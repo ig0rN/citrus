@@ -6,66 +6,25 @@ use Core\Model;
 
 class Product extends Model
 {
-    public function selectAll()
+    protected $table = 'products';
+    protected $fillable = ['name', 'description', 'image_path'];
+
+    public function delete()
     {
-        return $this->db->query("
-            SELECT * FROM products
-            ORDER BY name ASC
-        ")->resultSet();
+        $this->deleteImage();
+        parent::delete();
     }
 
-    public function save(array $post)
+    private function deleteImage()
     {
-        return $this->db->query("
-            INSERT INTO products (name, description, image_path) VALUES (:name, :description, :image_path)
-        ")
-            ->bind(':name', $post['name'])
-            ->bind(':description', $post['description'])
-            ->bind(':image_path', $post['image_path'])
-            ->execute();
-    }
+        $path = ROOT_DIR . '/public/images/' . $this->image_path;
 
-    public function find(array $post)
-    {
-        return $this->db->query("
-            SELECT * FROM products
-            WHERE id = :id
-        ")
-            ->bind(':id', $post['id'])
-            ->single();
-    }
-
-    public function update(array $post)
-    {
-        return $this->db->query("
-            UPDATE products SET name = :name, description = :description
-            WHERE id = :id
-        ")
-            ->bind(':name', $post['name'])
-            ->bind(':description', $post['description'])
-            ->bind(':id', $post['id'])
-            ->execute();
-    }
-
-    public function delete(array $post)
-    {
-        $image = $this->db->query("
-            SELECT image_path as image FROM products
-            WHERE id = :id
-        ")
-            ->bind(':id', $post['id'])
-            ->single()
-            ->image;
-
-        $path = ROOT_DIR . '/public/images/' . $image;
         if (file_exists($path)) {
             unlink($path);
+
+            return true;
         }
 
-        return $this->db->query("
-            DELETE FROM products WHERE id = :id
-        ")
-            ->bind(':id', $post['id'])
-            ->execute();
+        return false;
     }
 }

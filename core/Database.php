@@ -19,6 +19,12 @@ class Database
      * @var string
      */
     private $error;
+    /**
+     * Class instance
+     *
+     * @var Database
+     */
+    private static $instance;
 
     /**
      * Connect to database
@@ -26,14 +32,13 @@ class Database
      *
      * Database constructor.
      */
-    public function __construct(){
+    private function __construct(){
         $dbParams =  App::get('database');
 
         $params = 'mysql:host=' . $dbParams['host'] . ';dbname=' . $dbParams['dbname'];
         $options = array(
             PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
 
         try{
@@ -42,6 +47,20 @@ class Database
             $this->error = $e->getMessage();
             echo $this->error;
         }
+    }
+
+    /**
+     * Singleton
+     * Create object only if instance does't already exists
+     *
+     * @return Database
+     */
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
     }
 
     /**
@@ -98,9 +117,11 @@ class Database
     /**
      * Return array of objects
      *
+     * @param string $className
      * @return null | array of objects
      */
-    public function resultSet(){
+    public function resultSet(string $className){
+        $this->setFetchMode($className);
         $this->execute();
         return $this->stmt->fetchAll();
     }
@@ -108,9 +129,11 @@ class Database
     /**
      * Return object
      *
+     * @param string $className
      * @return mixed
      */
-    public function single(){
+    public function single(string $className){
+        $this->setFetchMode($className);
         $this->execute();
         return $this->stmt->fetch();
     }
@@ -122,5 +145,10 @@ class Database
      */
     public function rowCount(){
         return $this->stmt->rowCount();
+    }
+
+    private function setFetchMode(string $className)
+    {
+        $this->stmt->setFetchMode(PDO::FETCH_CLASS, $className);
     }
 }

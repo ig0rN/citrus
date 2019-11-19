@@ -6,13 +6,6 @@ use Core\Model;
 
 class User extends Model
 {
-    public function getByUsername(array $post)
-    {
-        return $this->db->query("
-            SELECT * FROM admin_users
-            WHERE username = :username
-        ")
-            ->bind(':username', $post['username'])
-            ->single();
-    }
+    protected $table = 'admin_users';
+    protected $fillable = ['username', 'password'];
 }
