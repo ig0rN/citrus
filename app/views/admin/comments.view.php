@@ -40,8 +40,8 @@
                         <tr>
                             <td scope="row"><?= $counter_p ?></td>
                             <td><?= $comment->content ?></td>
-                            <td><?= $comment->name ?></td>
-                            <td><?= $comment->email ?></td>
+                            <td><?= $comment->user_name ?></td>
+                            <td><?= $comment->user_email ?></td>
                             <td>
                                 <form action="/admin/comment/approve" method="post" class="d-inline">
                                     <input name="id" type="hidden" value="<?= $comment->id ?>">
@@ -84,8 +84,8 @@
                         <tr>
                             <td scope="row"><?= $counter_a ?></td>
                             <td><?= $comment->content ?></td>
-                            <td><?= $comment->name ?></td>
-                            <td><?= $comment->email ?></td>
+                            <td><?= $comment->user_name ?></td>
+                            <td><?= $comment->user_email ?></td>
                             <td>
                                 <form action="/admin/comment/delete" method="post" class="d-inline">
                                     <input name="id" type="hidden" value="<?= $comment->id ?>">

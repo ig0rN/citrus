@@ -21,8 +21,8 @@ class CommentsController extends BaseController
      */
     public function showComments()
     {
-        $approved = ( new Comment )->selectByApprovalStatus(true);
-        $pending = ( new Comment )->selectByApprovalStatus(false);
+        $approved   = Comment::selectAll('WHERE approved = 1 ORDER BY id DESC');
+        $pending    = Comment::selectAll('WHERE approved = 0 ORDER BY id DESC');
 
         return view('admin/comments', compact('approved', 'pending'));
     }
@@ -32,7 +32,7 @@ class CommentsController extends BaseController
      */
     public function approve()
     {
-        ( new Comment() )->approve($_POST);
+        Comment::findBy('id', $_POST['id'])->approve();
 
         App::get('session')->set('success', 'You successfully approved comment');
 
@@ -44,7 +44,7 @@ class CommentsController extends BaseController
      */
     public function delete()
     {
-        ( new Comment() )->delete($_POST);
+        Comment::findBy('id', $_POST['id'])->delete();
 
         App::get('session')->set('success', 'You successfully deleted comment');
 

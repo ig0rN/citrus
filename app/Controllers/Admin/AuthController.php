@@ -41,9 +41,9 @@ class AuthController extends BaseController
             return redirect('/admin/login');
         }
 
-        $user = ( new User() )->getByUsername($_POST);
+        $user = User::findBy('username', $_POST['username']);
 
-        $this->attempLogin($user, $_POST);
+        return $this->attempLogin($user, $_POST);
     }
 
     /**
