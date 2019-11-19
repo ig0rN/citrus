@@ -16,7 +16,7 @@ class ProductsController extends BaseController
 
     public function index()
     {
-        $products = ( new Product() )->selectAll();
+        $products = Product::selectAll();
 
         return view('admin/product/index', compact('products'));
     }
@@ -39,7 +39,7 @@ class ProductsController extends BaseController
         $image_path = ( new UploadImageService() )->upload($_FILES['image'], $_POST['name']);
         $_POST['image_path'] = $image_path;
 
-        ( new Product() )->save($_POST);
+        Product::create($_POST);
 
         App::get('session')->set('success', 'You successfully created new product');
 
@@ -48,7 +48,7 @@ class ProductsController extends BaseController
 
     public function edit()
     {
-        $product = ( new Product() )->find($_GET);
+        $product = Product::findBy('id', $_GET['id']);
 
         return view('admin/product/edit', compact('product'));
     }
@@ -63,7 +63,7 @@ class ProductsController extends BaseController
             return redirect('/admin/product/edit?id=' . $_POST['id']);
         }
 
-        ( new Product() )->update($_POST);
+        Product::findBy('id', $_POST['id'])->update($_POST);
 
         App::get('session')->set('success', 'You successfully updated product');
 
@@ -72,7 +72,7 @@ class ProductsController extends BaseController
 
     public function destroy()
     {
-        ( new Product() )->delete($_POST);
+        Product::findBy('id', $_POST['id'])->delete();
 
         App::get('session')->set('success', 'You successfully deleted product');
 

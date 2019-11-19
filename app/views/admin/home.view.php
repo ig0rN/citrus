@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row justify-content-center mt-4">
         <div class="text-center">
-            <h3>Hello Admin</h3>
+            <h3>Hello Admin <i><?= $user ?></i></h3>
         </div>
     </div>
 
