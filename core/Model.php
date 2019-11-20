@@ -26,7 +26,7 @@ abstract class Model
     {
         $instance = new static();
 
-        return Database::getInstance()->query("
+        return App::get('db')->query("
             SELECT * FROM {$instance->table} {$filterQuery}
         ")->resultSet($instance->className);
     }
@@ -35,7 +35,7 @@ abstract class Model
     {
         $instance = new static();
 
-        return Database::getInstance()->query("
+        return App::get('db')->query("
             SELECT * FROM {$instance->table}
             WHERE {$field} = :{$field}
         ")
@@ -58,7 +58,7 @@ abstract class Model
         $insertFields = implode(', ', $fields);
         $insertValues = ':' . implode(', :', $fields);
 
-        $query = Database::getInstance()->query("
+        $query = App::get('db')->query("
             INSERT INTO {$instance->table} ({$insertFields}) VALUES ({$insertValues})
         ");
 
@@ -85,7 +85,7 @@ abstract class Model
 
         $updateParams = implode(', ', $updateFieldsArray);
 
-        $query = Database::getInstance()->query("
+        $query = App::get('db')->query("
             UPDATE {$this->table} SET {$updateParams} WHERE id = {$this->id}
         ");
 
@@ -98,7 +98,7 @@ abstract class Model
 
     public function delete()
     {
-        return Database::getInstance()->query("
+        return App::get('db')->query("
             DELETE FROM {$this->table} WHERE id = {$this->id}
         ")->execute();
     }

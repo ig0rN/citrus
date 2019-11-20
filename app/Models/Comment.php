@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Core\Database;
 use Core\Model;
 
 class Comment extends Model
@@ -12,6 +11,8 @@ class Comment extends Model
 
     public function approve()
     {
-        return $this->update(['approved' => 1]);
+        $this->approved = 1;
+
+        return $this->update();
     }
 }
