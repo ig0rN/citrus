@@ -8,13 +8,10 @@ use Core\Model;
 class Comment extends Model
 {
     protected $table = 'comments';
-    protected $fillable = ['user_name', 'user_email', 'content'];
+    protected $fillable = ['user_name', 'user_email', 'content', 'approved'];
 
     public function approve()
     {
-        return Database::getInstance()->query("
-            UPDATE {$this->table} SET approved = 1 WHERE id = {$this->id}
-        ")
-            ->execute();
+        return $this->update(['approved' => 1]);
     }
 }
