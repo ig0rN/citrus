@@ -43,7 +43,7 @@ class AuthController extends BaseController
 
         $user = User::findBy('username', $_POST['username']);
 
-        return $this->attempLogin($user, $_POST);
+        return $this->attemptLogin($user, $_POST);
     }
 
     /**
@@ -54,7 +54,7 @@ class AuthController extends BaseController
      * @param $user
      * @param $var
      */
-    private function attempLogin($user, $var)
+    private function attemptLogin($user, $var)
     {
         if (! $user) {
             App::get('session')->set('error', "No user with username: {$var['username']}");

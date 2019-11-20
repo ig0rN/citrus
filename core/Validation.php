@@ -20,8 +20,8 @@ abstract class Validation
      * @param array $fields
      * @return $this
      */
-    protected function check($variable, array $fields = array()) {
-
+    protected function check($variable, array $fields = array())
+    {
         foreach ($fields as $field => $rules) {
 
           $field = explode('|', $field);
@@ -64,16 +64,18 @@ abstract class Validation
      * @param $field
      * @param $error
      */
-    private function addError($field, $error) {
+    private function addError($field, $error)
+    {
       $this->errors[$field] = $error;
     }
 
     /**
-     * Retrieves errors
+     * Retrieve errors
      *
      * @return array
      */
-    public function errors() {
+    public function errors()
+    {
       return $this->errors;
     }
 
@@ -82,7 +84,8 @@ abstract class Validation
      *
      * @return bool
      */
-    public function passed() {
+    public function passed()
+    {
       return $this->passed;
     }
 }

@@ -12,6 +12,12 @@ abstract class Model
     protected $table = '';
     protected $fillable = [];
 
+    /**
+     * Model constructor.
+     * Check does child class implements required fields
+     *
+     * @throws \Exception
+     */
     public function __construct()
     {
         $className = get_class($this);
@@ -22,6 +28,14 @@ abstract class Model
         $this->className = $className;
     }
 
+    /**
+     * Take all rows from database
+     * Fetch results into child class object
+     *
+     * @param string $filterQuery
+     * @return array[objects]
+     * @throws \Exception
+     */
     public static function selectAll($filterQuery = '')
     {
         $instance = new static();
@@ -31,6 +45,15 @@ abstract class Model
         ")->resultSet($instance->className);
     }
 
+    /**
+     * Take row filtered by specific field and value for that field
+     * Fetch result into child class object
+     *
+     * @param string $field
+     * @param $value
+     * @return object
+     * @throws \Exception
+     */
     public static function findBy(string $field, $value)
     {
         $instance = new static();
@@ -43,6 +66,13 @@ abstract class Model
             ->single($instance->className);
     }
 
+    /**
+     * Store data in database
+     *
+     * @param array $data
+     * @return bool
+     * @throws \Exception
+     */
     public static function create(array $data)
     {
         $instance = new static();
@@ -69,6 +99,12 @@ abstract class Model
         return $query->execute();
     }
 
+    /**
+     * Update data in database
+     *
+     * @param array $data
+     * @return mixed
+     */
     public function update(array $data = [])
     {
         if (!empty($data)) {
@@ -96,6 +132,11 @@ abstract class Model
         return $query->execute();
     }
 
+    /**
+     * Delete data from database
+     *
+     * @return bool
+     */
     public function delete()
     {
         return App::get('db')->query("

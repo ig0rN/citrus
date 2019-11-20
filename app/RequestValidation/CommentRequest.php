@@ -4,11 +4,15 @@ namespace App\RequestValidation;
 
 use Core\Validation;
 
-class CommentRequest extends Validation implements ValidationRequestInterface
+class CommentRequest extends Validation implements RequestValidationInterface
 {
-    public function validate($var)
+    /**
+     * @param array $data
+     * @return CommentRequest
+     */
+    public function validate(array $data)
     {
-        $validation = $this->check($var, array(
+        $validation = $this->check($data, array(
             'user_name|Full name' => array(
                 'required' => true,
                 'min' => 3,

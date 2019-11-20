@@ -4,11 +4,15 @@ namespace App\RequestValidation;
 
 use Core\Validation;
 
-class ProductRequest extends Validation implements ValidationRequestInterface
+class ProductRequest extends Validation implements RequestValidationInterface
 {
-    public function validate($var)
+    /**
+     * @param array $data
+     * @return ProductRequest
+     */
+    public function validate(array $data)
     {
-        $validation = $this->check($var, array(
+        $validation = $this->check($data, array(
             'name|Full name' => array(
                 'required' => true,
                 'min' => 3,

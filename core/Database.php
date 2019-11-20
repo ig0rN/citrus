@@ -2,15 +2,14 @@
 
 namespace Core;
 
-use PDO;
-use PDOException;
+use PDO, PDOException;
 
 class Database
 {
     /**
      * @var PDO
      */
-    private $db_handler;
+    private $pdo;
     /**
      * @var PDO statement
      */
@@ -28,7 +27,7 @@ class Database
 
     /**
      * Connect to database
-     * Save instance to property $db_handler
+     * Save instance into property $pdo
      *
      * @param string $type
      * @param string $host
@@ -44,7 +43,7 @@ class Database
         );
 
         try{
-            $this->db_handler = new PDO($params, $username, $password, $options);
+            $this->pdo = new PDO($params, $username, $password, $options);
         } catch(PDOException $e){
             $this->error = $e->getMessage();
             echo $this->error;
@@ -77,7 +76,7 @@ class Database
      * @return $this
      */
     public function query($sql){
-        $this->stmt = $this->db_handler->prepare($sql);
+        $this->stmt = $this->pdo->prepare($sql);
 
         return $this;
     }
@@ -122,10 +121,8 @@ class Database
     }
 
     /**
-     * Return array of objects
-     *
      * @param string $className
-     * @return null | array of objects
+     * @return null | array [objects]
      */
     public function resultSet(string $className){
         $this->setFetchMode($className);
@@ -134,10 +131,8 @@ class Database
     }
 
     /**
-     * Return object
-     *
      * @param string $className
-     * @return mixed
+     * @return null | object
      */
     public function single(string $className){
         $this->setFetchMode($className);
@@ -146,14 +141,17 @@ class Database
     }
 
     /**
-     * Return row numbers;
-     *
-     * @return mixed
+     * @return integer
      */
     public function rowCount(){
         return $this->stmt->rowCount();
     }
 
+    /**
+     * Set PDO fetch mode into specific class
+     *
+     * @param string $className
+     */
     private function setFetchMode(string $className)
     {
         $this->stmt->setFetchMode(PDO::FETCH_CLASS, $className);

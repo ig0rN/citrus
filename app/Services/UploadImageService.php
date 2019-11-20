@@ -6,6 +6,14 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class UploadImageService
 {
+    /**
+     * Resize & upload image
+     *
+     * @param $file
+     * @param string $inputName
+     * @param string $path
+     * @return string
+     */
     public function upload($file, string $inputName, string $path = ''): string
     {
         $image = $file;

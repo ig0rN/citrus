@@ -2,8 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Comment;
-use App\Models\Product;
+use App\Models\{Product, Comment};
 
 class PageController
 {

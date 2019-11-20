@@ -16,8 +16,10 @@ class CommentsController extends BaseController
     }
 
     /**
-     * Collect approved and pending comments
-     * Show view
+     * Show comments page
+     *
+     * @return mixed
+     * @throws \Exception
      */
     public function showComments()
     {
@@ -29,6 +31,8 @@ class CommentsController extends BaseController
 
     /**
      * Approve comment
+     *
+     * @throws \Exception
      */
     public function approve()
     {
@@ -41,6 +45,8 @@ class CommentsController extends BaseController
 
     /**
      * Deny comment and delete it from database
+     *
+     * @throws \Exception
      */
     public function delete()
     {

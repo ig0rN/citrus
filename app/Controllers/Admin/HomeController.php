@@ -2,7 +2,6 @@
 
 namespace App\Controllers\Admin;
 
-use App\Models\Comment;
 use Core\App;
 
 class HomeController extends BaseController

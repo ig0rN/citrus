@@ -9,11 +9,20 @@ use Core\App;
 
 class ProductsController extends BaseController
 {
+    /**
+     * ProductsController constructor.
+     */
     public function __construct()
     {
         $this->handleUnauthorizedUser();
     }
 
+    /**
+     * Show products pages
+     *
+     * @return mixed
+     * @throws \Exception
+     */
     public function index()
     {
         $products = Product::selectAll();
@@ -21,11 +30,21 @@ class ProductsController extends BaseController
         return view('admin/product/index', compact('products'));
     }
 
+    /**
+     * Show form for creating new product
+     *
+     * @return mixed
+     */
     public function create()
     {
         return view('admin/product/create');
     }
 
+    /**
+     * Store product in database
+     *
+     * @throws \Exception
+     */
     public function store()
     {
         $validation = ( new ProductRequest() )->validate($_POST);
@@ -46,6 +65,12 @@ class ProductsController extends BaseController
         return redirect('/admin/products');
     }
 
+    /**
+     * Show form for editing product
+     *
+     * @return mixed
+     * @throws \Exception
+     */
     public function edit()
     {
         $product = Product::findBy('id', $_GET['id']);
@@ -53,6 +78,11 @@ class ProductsController extends BaseController
         return view('admin/product/edit', compact('product'));
     }
 
+    /**
+     * Update product in database
+     *
+     * @throws \Exception
+     */
     public function update()
     {
         $validation = ( new ProductRequest() )->validate($_POST);
@@ -70,6 +100,11 @@ class ProductsController extends BaseController
         return redirect('/admin/products');
     }
 
+    /**
+     * Delete product from databse
+     *
+     * @throws \Exception
+     */
     public function destroy()
     {
         Product::findBy('id', $_POST['id'])->delete();
