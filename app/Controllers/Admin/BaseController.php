@@ -12,9 +12,7 @@ abstract class BaseController
     protected function handleUnauthorizedUser()
     {
         if (! App::get('session')->has('admin_user')) {
-            App::get('session')->set('error', 'You need to login');
-
-            return redirect('/admin/login');
+            return redirect('/admin/login', ['error' => 'You need to login']);
         }
     }
 

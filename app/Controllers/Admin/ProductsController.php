@@ -5,7 +5,6 @@ namespace App\Controllers\Admin;
 use App\Models\Product;
 use App\RequestValidation\ProductRequest;
 use App\Services\UploadImageService;
-use Core\App;
 
 class ProductsController extends BaseController
 {
@@ -50,9 +49,7 @@ class ProductsController extends BaseController
         $validation = ( new ProductRequest() )->validate($_POST);
 
         if (! $validation->passed()) {
-            App::get('session')->set('errors', $validation->errors());
-
-            return redirect('/admin/product/create');
+            return redirect('/admin/product/create', ['errors' => $validation->errors()]);
         }
 
         $image_path = ( new UploadImageService() )->upload($_FILES['image'], $_POST['name']);
@@ -60,9 +57,7 @@ class ProductsController extends BaseController
 
         Product::create($_POST);
 
-        App::get('session')->set('success', 'You successfully created new product');
-
-        return redirect('/admin/products');
+        return redirect('/admin/products', ['success' => 'You successfully created new product']);
     }
 
     /**
@@ -88,16 +83,12 @@ class ProductsController extends BaseController
         $validation = ( new ProductRequest() )->validate($_POST);
 
         if (! $validation->passed()) {
-            App::get('session')->set('errors', $validation->errors());
-
-            return redirect('/admin/product/edit?id=' . $_POST['id']);
+            return redirect('/admin/product/edit?id=' . $_POST['id'], ['errors' => $validation->errors()]);
         }
 
         Product::findBy('id', $_POST['id'])->update($_POST);
 
-        App::get('session')->set('success', 'You successfully updated product');
-
-        return redirect('/admin/products');
+        return redirect('/admin/products', ['success' => 'You successfully updated product']);
     }
 
     /**
@@ -109,8 +100,6 @@ class ProductsController extends BaseController
     {
         Product::findBy('id', $_POST['id'])->delete();
 
-        App::get('session')->set('success', 'You successfully deleted product');
-
-        return redirect('/admin/products');
+        return redirect('/admin/products', ['success' => 'You successfully deleted product']);
     }
 }

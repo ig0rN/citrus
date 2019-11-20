@@ -17,20 +17,11 @@ class CommentsController
         $validation = ( new CommentRequest() )->validate($_POST);
 
         if (!$validation->passed()) {
-            App::get('session')->set('error', 'Validation failed. Try again.');
-            App::get('session')->set('errors', $validation->errors());
-
-            return redirect('/');
+            return redirect('/', ['error' => 'Validation failed. Try again.', 'errors' => $validation->errors()]);
         }
 
-        $result = Comment::create($_POST);
+        Comment::create($_POST);
 
-        if ($result) {
-            App::get('session')->set('success', 'You successfully send comment. Now you wait for admin to approve');
-        } else {
-            App::get('session')->set('error', 'Somethings went wrong');
-        }
-
-        return redirect('/');
+        return redirect('/', ['success' => 'You successfully send comment. Now you wait for admin to approve.']);
     }
 }

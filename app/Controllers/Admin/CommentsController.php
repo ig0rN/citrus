@@ -3,7 +3,6 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Comment;
-use Core\App;
 
 class CommentsController extends BaseController
 {
@@ -38,9 +37,7 @@ class CommentsController extends BaseController
     {
         Comment::findBy('id', $_POST['id'])->approve();
 
-        App::get('session')->set('success', 'You successfully approved comment');
-
-        return redirect('/admin/comments');
+        return redirect('/admin/comments', ['success' => 'You successfully approved comment']);
     }
 
     /**
@@ -52,9 +49,7 @@ class CommentsController extends BaseController
     {
         Comment::findBy('id', $_POST['id'])->delete();
 
-        App::get('session')->set('success', 'You successfully deleted comment');
-
-        return redirect('/admin/comments');
+        return redirect('/admin/comments', ['success' => 'You successfully deleted comment']);
     }
 
 }

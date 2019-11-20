@@ -36,9 +36,7 @@ class AuthController extends BaseController
         $validation = ( new LoginRequest() )->validate($_POST);
 
         if (!$validation->passed()) {
-            App::get('session')->set('errors', $validation->errors());
-
-            return redirect('/admin/login');
+            return redirect('/admin/login', ['errors' => $validation->errors()]);
         }
 
         $user = User::findBy('username', $_POST['username']);
@@ -57,8 +55,7 @@ class AuthController extends BaseController
     private function attemptLogin($user, $var)
     {
         if (! $user) {
-            App::get('session')->set('error', "No user with username: {$var['username']}");
-            return redirect('/admin/login');
+            return redirect('/admin/login', ['error' => 'No user with username: ' . $var['username']]);
         }
 
         if (password_verify($var['password'], $user->password)) {
@@ -66,9 +63,7 @@ class AuthController extends BaseController
             return redirect('/admin/home');
         }
 
-        App::get('session')->set('error', 'Incorrect password');
-
-        return redirect('/admin/login');
+        return redirect('/admin/login', ['error' => 'Incorrect password']);
     }
 
     /**
