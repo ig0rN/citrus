@@ -25,15 +25,15 @@
 
         <div class="row justify-content-center mt-4">
             <?php foreach ($comments as $comment) : ?>
-                <div class="col-3 card mr-2">
+                <div class="col-3 card mr-2 mb-2">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" value="<?= $comment->name ?>" disabled>
+                            <input type="text" class="form-control" value="<?= $comment->user_name ?>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" value="<?= $comment->email ?>" disabled>
+                            <input type="email" class="form-control" value="<?= $comment->user_email ?>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="description">Comment</label>
@@ -55,15 +55,15 @@
                 <form action="comment/" method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input name="name" type="text" class="form-control">
+                        <input name="user_name" type="text" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input name="email" type="email" class="form-control">
+                        <input name="user_email" type="email" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="description">Comment</label>
-                        <textarea name="comment" id="" cols="30" rows="2" class="form-control"></textarea>
+                        <textarea name="content" id="" cols="30" rows="2" class="form-control"></textarea>
                     </div>
                     <div class="text-right">
                         <button class="btn btn-primary">Send comment</button>

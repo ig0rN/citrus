@@ -2,7 +2,6 @@
 
 namespace App\Controllers\Admin;
 
-use App\Models\Comment;
 use Core\App;
 
 class HomeController extends BaseController
@@ -20,7 +19,9 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        return view('admin/home');
+        $user = App::get('session')->get('admin_user')->username;
+
+        return view('admin/home', compact('user'));
     }
 
     /**

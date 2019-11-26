@@ -9,8 +9,19 @@ function dd(...$vars) {
     die;
 }
 
-function redirect(string $path) {
+function redirect(string $path, array $flashMessages = []) {
+    if (!empty($flashMessages)) {
+        $flashKeys = ['success', 'error', 'errors'];
+
+        foreach ($flashMessages as $key => $value){
+            if (in_array($key, $flashKeys)){
+                \Core\App::get('session')->set($key, $value);
+            }
+        }
+    }
+
     header("Location: {$path}");
+    exit;
 }
 
 function view(string $path, array $data = []) {

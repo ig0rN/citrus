@@ -2,7 +2,7 @@
 
 $router->get('', 'PageController@home');
 
-$router->post('comment', 'CommentsController@store');
+$router->post('comment', 'CommentsController@addComment');
 
 $router->get('admin/login', 'Admin\AuthController@showLogin');
 $router->post('admin', 'Admin\AuthController@login');

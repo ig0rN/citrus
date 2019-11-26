@@ -11,8 +11,9 @@ class Session
     {
         session_start();
     }
+
     /**
-     * Gets a value from the session by key
+     * Get a value from the session by key
      *
      * @param $key
      * @return mixed|null
@@ -21,8 +22,9 @@ class Session
     {
         return isset($_SESSION[$key]) ? $_SESSION[$key] : null;
     }
+
     /**
-     * Sets a value to a key in the session
+     * Set a value to a key in the session
      *
      * @param $key
      * @param $value
@@ -31,8 +33,9 @@ class Session
     {
         $_SESSION[$key] = $value;
     }
+
     /**
-     * Checks if a value exists in the session
+     * Check if a value exists in the session
      *
      * @param $key
      * @return bool
@@ -41,8 +44,9 @@ class Session
     {
         return isset($_SESSION[$key]);
     }
+
     /**
-     * Removes a value from the session by key
+     * Remove a value from the session by key
      *
      * @param $key
      */
@@ -51,8 +55,9 @@ class Session
         if (!isset($_SESSION[$key])) return;
         unset($_SESSION[$key]);
     }
+
     /**
-     * Destroys session and removes all session values
+     * Destroy session and removes all session values
      */
     public function destroy()
     {

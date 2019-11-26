@@ -11,7 +11,9 @@
             "App\\": "app/",
             "Core\\": "core/"
         },
-        "files": ["config/helpers.php"]
+        "files": [
+          "bootstrap/helpers.php"
+        ]
     },
     "require": {
         "intervention/image": "^2.5"

@@ -2,8 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Comment;
-use App\Models\Product;
+use App\Models\{Product, Comment};
 
 class PageController
 {
@@ -12,8 +11,8 @@ class PageController
      */
     public function home()
     {
-        $products = ( new Product )->selectAll();
-        $comments = ( new Comment )->selectByApprovalStatus(true);
+        $products = Product::selectAll('ORDER BY name ASC');
+        $comments = Comment::selectAll('WHERE approved = 1 ORDER BY id DESC');
 
         return view('front/home', compact('products', 'comments'));
     }

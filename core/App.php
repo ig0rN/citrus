@@ -26,12 +26,14 @@ class App
      * Return registered param
      *
      * @param $key
-     * @return mixed
+     * @return null | mixed
      */
     public static function get ($key)
     {
         if (array_key_exists($key, self::$registry)) {
             return self::$registry[$key];
         }
+
+        return null;
     }
 }

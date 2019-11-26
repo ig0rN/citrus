@@ -3,7 +3,6 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Comment;
-use Core\App;
 
 class CommentsController extends BaseController
 {
@@ -16,39 +15,41 @@ class CommentsController extends BaseController
     }
 
     /**
-     * Collect approved and pending comments
-     * Show view
+     * Show comments page
+     *
+     * @return mixed
+     * @throws \Exception
      */
     public function showComments()
     {
-        $approved = ( new Comment )->selectByApprovalStatus(true);
-        $pending = ( new Comment )->selectByApprovalStatus(false);
+        $approved   = Comment::selectAll('WHERE approved = 1 ORDER BY id DESC');
+        $pending    = Comment::selectAll('WHERE approved = 0 ORDER BY id DESC');
 
         return view('admin/comments', compact('approved', 'pending'));
     }
 
     /**
      * Approve comment
+     *
+     * @throws \Exception
      */
     public function approve()
     {
-        ( new Comment() )->approve($_POST);
+        Comment::findBy('id', $_POST['id'])->approve();
 
-        App::get('session')->set('success', 'You successfully approved comment');
-
-        return redirect('/admin/comments');
+        return redirect('/admin/comments', ['success' => 'You successfully approved comment']);
     }
 
     /**
      * Deny comment and delete it from database
+     *
+     * @throws \Exception
      */
     public function delete()
     {
-        ( new Comment() )->delete($_POST);
+        Comment::findBy('id', $_POST['id'])->delete();
 
-        App::get('session')->set('success', 'You successfully deleted comment');
-
-        return redirect('/admin/comments');
+        return redirect('/admin/comments', ['success' => 'You successfully deleted comment']);
     }
 
 }

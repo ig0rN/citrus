@@ -2,15 +2,14 @@
 
 namespace Core;
 
-use PDO;
-use PDOException;
+use PDO, PDOException;
 
 class Database
 {
     /**
      * @var PDO
      */
-    private $db_handler;
+    private $pdo;
     /**
      * @var PDO statement
      */
@@ -19,29 +18,55 @@ class Database
      * @var string
      */
     private $error;
+    /**
+     * Class instance
+     *
+     * @var Database
+     */
+    private static $instance;
 
     /**
      * Connect to database
-     * Save instance to property $db_handler
+     * Save instance into property $pdo
      *
-     * Database constructor.
+     * @param string $type
+     * @param string $host
+     * @param string $dbname
+     * @param string $username
+     * @param string $password
      */
-    public function __construct(){
-        $dbParams =  App::get('database');
-
-        $params = 'mysql:host=' . $dbParams['host'] . ';dbname=' . $dbParams['dbname'];
+    private function __construct(string $type, string $host, string $dbname, string $username, string $password){
+        $params = $type . ':host=' . $host . ';dbname=' . $dbname;
         $options = array(
             PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         );
 
         try{
-            $this->db_handler = new PDO($params, $dbParams['username'], $dbParams['password'], $options);
+            $this->pdo = new PDO($params, $username, $password, $options);
         } catch(PDOException $e){
             $this->error = $e->getMessage();
             echo $this->error;
         }
+    }
+
+    /**
+     * Singleton
+     * Create object only if instance does't already exists
+     *
+     * @param string $type
+     * @param string $host
+     * @param string $dbname
+     * @param string $username
+     * @param string $password
+     * @return Database
+     */
+    public static function getInstance(string $type, string $host, string $dbname, string $username, string $password)
+    {
+        if (self::$instance === null) {
+            self::$instance = new self($type, $host, $dbname, $username, $password);
+        }
+        return self::$instance;
     }
 
     /**
@@ -51,7 +76,7 @@ class Database
      * @return $this
      */
     public function query($sql){
-        $this->stmt = $this->db_handler->prepare($sql);
+        $this->stmt = $this->pdo->prepare($sql);
 
         return $this;
     }
@@ -96,31 +121,39 @@ class Database
     }
 
     /**
-     * Return array of objects
-     *
-     * @return null | array of objects
+     * @param string $className
+     * @return null | array [objects]
      */
-    public function resultSet(){
+    public function resultSet(string $className){
+        $this->setFetchMode($className);
         $this->execute();
         return $this->stmt->fetchAll();
     }
 
     /**
-     * Return object
-     *
-     * @return mixed
+     * @param string $className
+     * @return null | object
      */
-    public function single(){
+    public function single(string $className){
+        $this->setFetchMode($className);
         $this->execute();
         return $this->stmt->fetch();
     }
 
     /**
-     * Return row numbers;
-     *
-     * @return mixed
+     * @return integer
      */
     public function rowCount(){
         return $this->stmt->rowCount();
+    }
+
+    /**
+     * Set PDO fetch mode into specific class
+     *
+     * @param string $className
+     */
+    private function setFetchMode(string $className)
+    {
+        $this->stmt->setFetchMode(PDO::FETCH_CLASS, $className);
     }
 }

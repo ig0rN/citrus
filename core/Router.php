@@ -2,8 +2,7 @@
 
 namespace Core;
 
-use Core\Exceptions\MethodNotFoundException;
-use Core\Exceptions\RouteNotFoundException;
+use Core\Exceptions\{MethodNotFoundException, RouteNotFoundException};
 
 class Router
 {
@@ -18,7 +17,7 @@ class Router
     );
 
     /**
-     * This method build up application
+     * Build up application
      * Make instance, require file which register routes, return object
      *
      * @param string $file
@@ -96,7 +95,5 @@ class Router
         }
 
         return $instance->$action();
-
     }
-
 }
