@@ -29,5 +29,3 @@
 - I provided almost a fully functional MVC framework
 
 - Front-end uses Bootstrap library
-
-- While you looking you will see that I made a many more things beside requirements
