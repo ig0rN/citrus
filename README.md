@@ -1,7 +1,14 @@
-# Citrus
-*Pure PHP project*
+# Custom MVC
 
-*Custom MVC*
+## Description
+
+Custom MVC created for 24h with pure PHP which looks like Laravel
+
+System has:
+ - Index page ( all products, comments for company & products )
+ - Admin login
+ - Admin page ( CRUD for products, comments - approve or deny & delete)
+ - Flashing messages
 
 ## Initial cloning
 - Clone project
